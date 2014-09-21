@@ -38,9 +38,10 @@ public class MovingInstanceD extends BasicInstanceD{
 	/**
 	 * update the position and orientation with the velocity and rotation
 	 */
-	public void tick(){
+	public MovingInstanceD tick(){
 		QuaternionF.mul(rotation,orientation(),orientation());
 		position().add(velocity);
+		return this;
 	}
 	
 }

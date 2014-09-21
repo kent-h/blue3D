@@ -121,6 +121,48 @@ public class QuaternionF extends Quaternion{
 		return this;
 	}
 	
+	/**
+	 * sets this quaternion to this^n (for a rotation quaternion, this is equivalent to rotating this by itself n times)
+	 * This should only work for unit quaternions.
+	 * @param n power
+	 * @return this
+	 */
+	public final QuaternionF pow(float n){
+		ln().scale(n).exp();
+		return this;
+	}
+	
+	@Override
+	public final QuaternionF ln() {
+		float r  = (float) Math.sqrt(x*x+y*y+z*z);
+		float t  = r>0.00001f? (float)Math.atan2(r,w)/r: 0.f;
+		w=0.5f*(float)Math.log(w*w+x*x+y*y+z*z);
+		x*=t;
+		y*=t;
+		z*=t;
+		return this;
+	}
+	
+	@Override
+	public final QuaternionF exp() {
+		float r  = (float) Math.sqrt(x*x+y*y+z*z);
+		float et = (float) Math.exp(w);
+		float s  = r>=0.00001f? et*(float)Math.sin(r)/r: 0f;
+		
+		w=et*(float)Math.cos(r);
+		x*=s;
+		y*=s;
+		z*=s;
+		return this;
+	}
+	
+	public QuaternionF scale(float scale){
+		w*=scale;
+		x*=scale;
+		y*=scale;
+		z*=scale;
+		return this;
+	}
 	
 	/**
 	 * calculates and returns the dot product of two vectors

@@ -90,6 +90,11 @@ public class MatrixHandler {
 	}
 	
 	
+	public static void setInstanceMatrix(Matrix4f matrix){
+		modelMatrix.set(matrix);
+	}
+	
+	
 	/**
 	 * calculates or re-calculates the bone positions only, if anything else was modified before this call, behaviour is undefined.
 	 * unimplemented, may be included in a future release

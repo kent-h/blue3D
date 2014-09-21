@@ -291,13 +291,14 @@ public class SquareField {
 		}
 		
 		
-		public void tick(){
+		public Shape tick(){
 			position().z+=30;
 			QuaternionF.mul(rotation,orientation(),orientation());
 			
 			MatrixHandler.setInstance(this);
 			MatrixHandler.calculateInstance();
 			MatrixHandler.load();
+			return this;
 		}
 		
 		

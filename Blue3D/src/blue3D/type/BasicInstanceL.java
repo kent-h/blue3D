@@ -33,9 +33,10 @@ public class BasicInstanceL implements Instance{
 	
 	/**
 	 * nothing to do for this class
+	 * @return 
 	 */
-	public void tick(){
-		
+	public BasicInstanceL tick(){
+		return this;
 	}
 
 

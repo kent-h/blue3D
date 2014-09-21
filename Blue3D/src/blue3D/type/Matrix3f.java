@@ -45,7 +45,7 @@ public class Matrix3f implements java.io.Serializable, Cloneable {
 	/**
 	 * The first matrix element in the first row.
 	 */
-	public float m00;
+	public float m00=1;
 
 	/**
 	 * The second matrix element in the first row.
@@ -65,7 +65,7 @@ public class Matrix3f implements java.io.Serializable, Cloneable {
 	/**
 	 * The second matrix element in the second row.
 	 */
-	public float m11;
+	public float m11=1;
 
 	/**
 	 * The third matrix element in the second row.
@@ -85,13 +85,13 @@ public class Matrix3f implements java.io.Serializable, Cloneable {
 	/**
 	 * The third matrix element in the third row.
 	 */
-	public float m22;
+	public float m22=1;
 	/*
 	 * double[] tmp = new double[9]; // scratch matrix double[] tmp_rot = new
 	 * double[9]; // scratch matrix double[] tmp_scale = new double[3]; // scratch
 	 * matrix
 	 */
-	private static final double EPS = 1.0E-8;
+//	private static final double EPS = 1.0E-8;
 
 	/**
 	 * Constructs and initializes a Matrix3f from the specified nine values.
@@ -196,10 +196,10 @@ public class Matrix3f implements java.io.Serializable, Cloneable {
 	}
 
 	/**
-	 * Constructs and initializes a Matrix3f to all zeros.
+	 * Constructs and initializes a Matrix3f to the identity.
 	 */
 	public Matrix3f() {
-		//0'd out by default
+		//identity by default
 	}
 
 	/**

@@ -27,8 +27,9 @@ public interface Instance {
 	/**
 	 * allows the object to be updated in some way, presumably once per frame
 	 * the the Moving* objects, update the position and orientation.
+	 * @return 
 	 */
-	public void tick();
+	public Instance tick();
 	
 	
 	/**

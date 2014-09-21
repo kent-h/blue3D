@@ -33,46 +33,48 @@ public class BasicInstanceD implements Instance{
 	
 	/**
 	 * nothing to do for this class
+	 * @return 
 	 */
-	public void tick(){
-		
+	public BasicInstanceD tick(){
+		return this;
 	}
 	
+	@Override
 	public Vector3l transform(Vector3l toTransform) {
 		orientation.rotateVector(toTransform);//rotate
 		toTransform.add(position);//then translate
 		return toTransform;
 	}
 
-
+	@Override
 	public Vector3f transform(Vector3f toTransform) {
 		orientation.rotateVector(toTransform);//rotate
 		toTransform.add(position);//then translate
 		return toTransform;
 	}
 
-
+	@Override
 	public Vector3d transform(Vector3d toTransform) {
 		orientation.rotateVector(toTransform);//rotate
 		toTransform.add(position);//then translate
 		return toTransform;
 	}
 
-
+	@Override
 	public Vector3l inverseTransform(Vector3l toTransform) {
 		toTransform.sub(position);//translate
 		orientation.inverseRotateVector(toTransform);//then rotate
 		return toTransform;
 	}
 
-
+	@Override
 	public Vector3f inverseTransform(Vector3f toTransform) {
 		toTransform.sub(position);//translate
 		orientation.inverseRotateVector(toTransform);//then rotate
 		return toTransform;
 	}
 
-
+	@Override
 	public Vector3d inverseTransform(Vector3d toTransform) {
 		toTransform.sub(position);//translate
 		orientation.inverseRotateVector(toTransform);//then rotate

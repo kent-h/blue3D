@@ -153,7 +153,6 @@ public class QuaternionD extends Quaternion{
 		 return this;
 	 }
 	 
-	 
 	 /**
 	  * make this quaternion equal to the given quaternion
 	  * @param other
@@ -165,6 +164,48 @@ public class QuaternionD extends Quaternion{
 		 z=other.z;
 	 }
 	 
+	 /**
+		 * sets this quaternion to this^n (for a rotation quaternion, this is equivalent to rotating this by itself n times)
+		 * This should only work for unit quaternions.
+		 * @param n power
+		 * @return this
+		 */
+		public final QuaternionD pow(double n){
+			ln().scale(n).exp();
+			return this;
+		}
+		
+		@Override
+		public final QuaternionD ln() {
+			float r  = (float) Math.sqrt(x*x+y*y+z*z);
+			float t  = r>0.00001f? (float)Math.atan2(r,w)/r: 0.f;
+			w=0.5f*(float)Math.log(w*w+x*x+y*y+z*z);
+			x*=t;
+			y*=t;
+			z*=t;
+			return this;
+		}
+		
+		@Override
+		public final QuaternionD exp() {
+			float r  = (float) Math.sqrt(x*x+y*y+z*z);
+			float et = (float) Math.exp(w);
+			float s  = r>=0.00001f? et*(float)Math.sin(r)/r: 0f;
+			
+			w=et*(float)Math.cos(r);
+			x*=s;
+			y*=s;
+			z*=s;
+			return this;
+		}
+		
+		public QuaternionD scale(double scale){
+			w*=scale;
+			x*=scale;
+			y*=scale;
+			z*=scale;
+			return this;
+		}
 	 
 		public Vector3l rotateVector(Vector3l in, Vector3l dest) {
 			long tmpx = (long) ((1-2*(y*y + z*z))*in.x + (x*y + z*w)*2*in.y 		+ (x*z - y*w)*2*in.z);//(12+6)*3 = 54 operations
@@ -172,7 +213,6 @@ public class QuaternionD extends Quaternion{
 			dest.z = 		(long) ((x*z + y*w)*2*in.x 		 + (y*z - x*w)*2*in.y 		+ (1-2*(x*x + y*y))*in.z);
 			dest.y=tmpy;
 			dest.x=tmpx;
-			 
 			return dest;
 		}
 	 

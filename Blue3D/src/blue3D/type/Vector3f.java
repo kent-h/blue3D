@@ -181,8 +181,8 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	 *          the second vector
 	 */
 	public final Vector3f perpendicular(Vector3l v0, Vector3l v1, Vector3l v2) {
-		Vector3l s1=new Vector3l().sub(v1, v0);
-		Vector3l s2=new Vector3l().sub(v2, v0);
+		Vector3l s1=new Vector3l(v1).sub(v0);
+		Vector3l s2=new Vector3l(v2).sub(v0);
 		
 		float x = s1.y * s2.z - s1.z * s2.y,
 					y = s2.x * s1.z - s2.z * s1.x;
@@ -420,9 +420,9 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	 *          the other tuple
 	 */
 	public final Vector3f sub(Vector3f t1) {
-		this.x -= t1.x;
-		this.y -= t1.y;
-		this.z -= t1.z;
+		x -= t1.x;
+		y -= t1.y;
+		z -= t1.z;
 		return this;
 	}
 	
@@ -434,9 +434,9 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	 *          the other tuple
 	 */
 	public final Vector3f sub(Vector3d t1) {
-		this.x -= t1.x;
-		this.y -= t1.y;
-		this.z -= t1.z;
+		x -= t1.x;
+		y -= t1.y;
+		z -= t1.z;
 		return this;
 	}
 	

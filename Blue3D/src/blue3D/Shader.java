@@ -14,28 +14,28 @@ public class Shader {
 	 * default shader, works with the loaded matrix and colour only.
 	 */
 	public Shader(){
-			String vertex="#version 330 core\n" +
-			"#extension GL_ARB_explicit_uniform_location : require\n" +
-			"layout(location=8) uniform mat4 worldMatrix;" +
-			"in vec4 gl_Vertex;" +
-			"in vec4 gl_Color;" +
-			"out vec4 outcol;" +
-			"void main() {" +
-			"  gl_Position = worldMatrix * gl_Vertex;" +
-			"  outcol=gl_Color;" +
-			"}";
-			String fragment="#version 330 core\n" +
-			"in vec4 outcol;" +
-			"out vec4 gl_FragColor;" +
-			"void main() {" +
-			"gl_FragColor = outcol;\n" +
-			"}";
-			shaderId = GL20.glCreateProgram();
-			vShader=createShader(vertex, GL20.GL_VERTEX_SHADER);
-			GL20.glAttachShader(shaderId, vShader);
-			fShader=createShader(fragment, GL20.GL_FRAGMENT_SHADER);
-			GL20.glAttachShader(shaderId, fShader);
-			GL20.glLinkProgram(shaderId);
+		String vertex="#version 330 core\n" +
+				"#extension GL_ARB_explicit_uniform_location : require\n" +
+				"layout(location=8) uniform mat4 worldMatrix;" +
+				"in vec4 gl_Vertex;" +
+				"in vec4 gl_Color;" +
+				"out vec4 outcol;" +
+				"void main() {" +
+				"  gl_Position = worldMatrix * gl_Vertex;" +
+				"  outcol=gl_Color;" +
+				"}";
+		String fragment="#version 330 core\n" +
+				"in vec4 outcol;" +
+				"out vec4 gl_FragColor;" +
+				"void main() {" +
+				"gl_FragColor = outcol;\n" +
+				"}";
+		shaderId = GL20.glCreateProgram();
+		vShader = createShader(vertex, GL20.GL_VERTEX_SHADER);
+		GL20.glAttachShader(shaderId, vShader);
+		fShader = createShader(fragment, GL20.GL_FRAGMENT_SHADER);
+		GL20.glAttachShader(shaderId, fShader);
+		GL20.glLinkProgram(shaderId);
 	}
 	
 	

@@ -14,7 +14,7 @@ public class Vector4f extends org.lwjgl.util.vector.Vector4f{
 	}
 	
 	public Vector4f set(Vector3f other){
-		w=0;
+		w=1;
 		x=other.x;
 		y=other.y;
 		z=other.z;

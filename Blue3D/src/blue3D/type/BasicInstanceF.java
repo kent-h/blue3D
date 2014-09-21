@@ -34,8 +34,8 @@ public class BasicInstanceF implements Instance{
 	/**
 	 * nothing to do for this class
 	 */
-	public void tick(){
-		
+	public BasicInstanceF tick(){
+		return this;
 	}
 	
 	public Vector3l transform(Vector3l toTransform) {

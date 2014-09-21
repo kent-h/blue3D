@@ -2,6 +2,9 @@ package blue3D.type;
 
 public abstract class Quaternion {
 	
+	public abstract Quaternion ln();
+	public abstract Quaternion exp();
+	
 	/**
 	 * multiplication, this is NOT commutative
 	 */
