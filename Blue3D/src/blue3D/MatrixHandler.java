@@ -5,8 +5,8 @@ import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20;
 
-import blue3D.type.Instance;
 import blue3D.type.Matrix4f;
+import blue3D.type.baseEntities.Instance;
 
 public class MatrixHandler {
 	

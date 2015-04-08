@@ -49,6 +49,7 @@ public class Texture {
 					height     	= header[22]|header[23]<<8|header[24]<<16|header[25]<<24;
 					//confirm valid attributes
 					if (imageSize==0)    imageSize=width*height*3; // 3 : one byte for each Red, Green and Blue component
+					
 					if (dataPos==0)      dataPos=54;
 					
 					//allocate temporary ram space
@@ -56,7 +57,7 @@ public class Texture {
 					//allocate gpu space
 					ByteBuffer buffer = ByteBuffer.allocateDirect(imageSize);
 					//fast forward to start of the data
-					in.skip(54-dataPos);
+					in.skip(dataPos-54);
 					
 					//read actual image data
 					in.read(tmpBuff);

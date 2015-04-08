@@ -84,10 +84,10 @@ public class Vector3d implements Sendable, Vector3{
 		return this;
 	}
 
-	public Vector3d set(double sx, double sy, double sz) {
-		x=sx;
-		y=sy;
-		z=sz;
+	public Vector3d set(double x, double y, double z) {
+		this.x=x;
+		this.y=y;
+		this.z=z;
 		return this;
 	}
 	

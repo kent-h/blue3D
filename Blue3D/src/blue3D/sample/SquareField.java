@@ -27,9 +27,9 @@ import blue3D.MatrixHandler;
 import blue3D.Shader;
 import blue3D.Texture;
 import blue3D.ViewPort;
-import blue3D.type.BasicInstanceL;
 import blue3D.type.QuaternionF;
 import blue3D.type.Vector3f;
+import blue3D.type.baseEntities.BasicInstanceL;
 
 
 public class SquareField {
@@ -185,28 +185,16 @@ public class SquareField {
 			Shape newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
 			allFlyers.addFirst(newMovingShape);
 			
+			for (int i=0;i<6;i++){
 			newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
 			allFlyers.addFirst(newMovingShape);
+			}
 			
-			newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
-			allFlyers.addFirst(newMovingShape);
-			
-			newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
-			allFlyers.addFirst(newMovingShape);
-			
-			newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
-			allFlyers.addFirst(newMovingShape);
-			
-			newMovingShape=new Shape((long)(Math.random()*8000-4000),(long)(Math.random()*8000-4000),0);
-			allFlyers.addFirst(newMovingShape);
 			
 			if (time==0){
 				allFlyers.removeLast();
-				allFlyers.removeLast();
-				allFlyers.removeLast();
-				allFlyers.removeLast();
-				allFlyers.removeLast();
-				allFlyers.removeLast();
+				for (int i=0;i<6;i++)
+					allFlyers.removeLast();
 			}else{
 				time--;
 			}

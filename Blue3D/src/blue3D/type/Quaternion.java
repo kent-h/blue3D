@@ -4,6 +4,7 @@ public abstract class Quaternion {
 	
 	public abstract Quaternion ln();
 	public abstract Quaternion exp();
+	public abstract Quaternion normalize();
 	
 	/**
 	 * multiplication, this is NOT commutative

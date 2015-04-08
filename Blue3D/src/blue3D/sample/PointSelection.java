@@ -14,11 +14,11 @@ import blue3D.CameraL;
 import blue3D.MatrixHandler;
 import blue3D.Shader;
 import blue3D.ViewPort;
-import blue3D.type.BasicInstanceL;
-import blue3D.type.Instance;
 import blue3D.type.QuaternionF;
 import blue3D.type.Vector3f;
 import blue3D.type.Vector3l;
+import blue3D.type.baseEntities.BasicInstanceL;
+import blue3D.type.baseEntities.Instance;
 import blue3D.utility.ClickablePointSelector;
 
 

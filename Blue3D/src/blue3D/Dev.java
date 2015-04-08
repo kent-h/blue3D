@@ -8,7 +8,7 @@ public class Dev {
 	}
 	
 	public static void print(Exception e){
-		System.out.println(e.getMessage());
+		e.printStackTrace();
 	}
 	
 }

@@ -128,7 +128,9 @@ public class QuaternionF extends Quaternion{
 	 * @return this
 	 */
 	public final QuaternionF pow(float n){
-		ln().scale(n).exp();
+		ln();
+		scale(n);
+		exp();
 		return this;
 	}
 	
@@ -181,6 +183,11 @@ public class QuaternionF extends Quaternion{
 	 public static float angle(QuaternionF quart1, QuaternionF quart2){
 		 return (float)Math.acos(dot(quart1, quart2));
 	 }
+	 
+
+	 public float angle() {
+			return (float)Math.acos(w);
+		}
 	 
 	 
 	 /**
@@ -469,12 +476,33 @@ public class QuaternionF extends Quaternion{
 	  * @param dest location to store the vector
 	  * @return dest
 	  */
-	 public Vector3d getVector(Vector3d dest){
-		 dest.x=(x*z - y*w)*-2;
-		 dest.y=(y*z + x*w)*-2;
-		 dest.z=(x*x + y*y)*2-1;
-		 return dest;
-	 }
+	public Vector3d getVector(Vector3d dest) {
+		dest.x = (x * z - y * w) * -2;
+		dest.y = (y * z + x * w) * -2;
+		dest.z = (x * x + y * y) * 2 - 1;
+		return dest;
+	}
+	
+	public QuaternionF invert() {
+		x = -x;
+		y = -y;
+		z = -z;
+		return this;
+	}
+
+	//conversion to & from other rotation systems
+
+	/**
+	 * Maps this quaternion to euler angles.
+	 * @param out the vector to populate
+	 * @return out
+	 */
+	public Vector3f toEuler(Vector3f out) {
+		out.x = (float) Math.atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y));
+		out.y = (float) Math.asin(2 * (w * y - z * x));
+		out.z = (float) Math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z));
+		return out;
+	}
 	
 	
 	/**
@@ -509,7 +537,7 @@ public class QuaternionF extends Quaternion{
 	
 	
 	public String toString(){
-		return w+":"+x+":"+y+":"+z+" length="+(float)Math.sqrt(w*w+x*x+y*y+z*z);
+		return "("+w+", "+x+", "+y+", "+z+") length="+(float)Math.sqrt(w*w+x*x+y*y+z*z);
 	}
 	
 }

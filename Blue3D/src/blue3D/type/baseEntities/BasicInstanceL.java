@@ -1,8 +1,14 @@
-package blue3D.type;
+package blue3D.type.baseEntities;
+
+import blue3D.type.Matrix4f;
+import blue3D.type.QuaternionF;
+import blue3D.type.Vector3d;
+import blue3D.type.Vector3f;
+import blue3D.type.Vector3l;
 
 
-public class BasicInstanceF implements Instance{
-	private Vector3f position=new Vector3f();
+public class BasicInstanceL implements Instance{
+	private Vector3l position=new Vector3l();
 	//protected Vector3l velocity=new Vector3l();//should this be part of this object? unused for now
 	private QuaternionF orientation=new QuaternionF();
 	
@@ -24,20 +30,22 @@ public class BasicInstanceF implements Instance{
 	
 	
 	/**
-	 * there is no setter for this variable, to modify it, use position(), then modify the returned Vector3d object
+	 * there is no setter for this variable, to modify it, use position(), then modify the returned Vector3l object
 	 * @return the object's position object
 	 */
-	public Vector3f position() {
+	public Vector3l position() {
 		return position;
 	}
 	
 	/**
 	 * nothing to do for this class
+	 * @return 
 	 */
-	public BasicInstanceF tick(){
+	public BasicInstanceL tick(){
 		return this;
 	}
-	
+
+
 	public Vector3l transform(Vector3l toTransform) {
 		orientation.rotateVector(toTransform);//rotate
 		toTransform.add(position);//then translate
@@ -78,4 +86,5 @@ public class BasicInstanceF implements Instance{
 		orientation.inverseRotateVector(toTransform);//then rotate
 		return toTransform;
 	}
+	
 }

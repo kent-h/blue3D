@@ -9,12 +9,12 @@ import blue3D.CameraD;
 import blue3D.MatrixHandler;
 import blue3D.Shader;
 import blue3D.ViewPort;
-import blue3D.type.MovingInstanceD;
+import blue3D.type.baseEntities.MovingInstanceD;
 
 
 
 
-/*
+/**
  * | Z
  * |
  * |																												__	(0,-10,5)
@@ -85,8 +85,7 @@ public class WellExplainedSimple {
 		camera.orientation().rotate(1, 0, 0, -(float)Math.PI/3);
 		
 		//move the camera to (0,-10,5)
-		camera.position().y=-10;
-		camera.position().z=5;
+		camera.position().set(0,-15, 5);
 		
 		//create a ViewPort, and and give it the camera
 		//a ViewPort allows a camera's width and height to be easily resized (the actual number of pixels it needs to render to).

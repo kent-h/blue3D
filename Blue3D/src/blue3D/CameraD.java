@@ -1,7 +1,7 @@
 package blue3D;
 
-import blue3D.type.BasicInstanceD;
 import blue3D.type.Matrix4f;
+import blue3D.type.baseEntities.BasicInstanceD;
 
 public class CameraD extends BasicInstanceD implements Camera{
 	

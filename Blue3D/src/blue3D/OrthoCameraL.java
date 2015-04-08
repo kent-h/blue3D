@@ -1,7 +1,7 @@
 package blue3D;
 
-import blue3D.type.BasicInstanceL;
 import blue3D.type.Matrix4f;
+import blue3D.type.baseEntities.BasicInstanceL;
 
 public class OrthoCameraL extends BasicInstanceL implements Camera{
 	

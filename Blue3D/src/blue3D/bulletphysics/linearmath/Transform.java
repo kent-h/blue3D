@@ -30,6 +30,8 @@ import blue3D.type.Matrix3f;
 import blue3D.type.Matrix4f;
 import blue3D.type.QuaternionF;
 import blue3D.type.Vector3f;
+import blue3D.type.Vector3l;
+import blue3D.type.baseEntities.MovingInstanceL;
 
 /**
  * Transform represents translation and rotation (rigid transform). Scaling and
@@ -73,6 +75,23 @@ public class Transform {
 	public void set(Matrix3f mat) {
 		basis.set(mat);
 		origin.set(0f, 0f, 0f);
+	}
+	
+	public void set(MovingInstanceL inst) {
+		Vector3l pos=inst.position();
+		origin.x=pos.x*0.0001f;
+		origin.y=pos.y*0.0001f;
+		origin.z=pos.z*0.0001f;
+		setRotation(inst.orientation().invert());
+	}
+	
+	public void get(MovingInstanceL inst) {
+		Vector3l pos=inst.position();
+		pos.x=(long) (origin.x*10000);
+		pos.y=(long) (origin.y*10000);
+		pos.z=(long) (origin.z*10000);
+		getRotation(inst.orientation());
+		inst.orientation().invert();
 	}
 
 	public void set(Matrix4f mat) {

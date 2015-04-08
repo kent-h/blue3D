@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 public class Skybox {
 	
-	static CameraD tmpCamera=new CameraD();
+	static CameraF tmpCamera=new CameraF();
 	
 	static Shader textureShader;
 	
@@ -21,12 +21,13 @@ public class Skybox {
 	 * @param path path to the folder containing the skybox images.
 	 */
 	public Skybox(String path) {
-		skyboxPx=new Texture(path+"Px.bmp");
-		skyboxNx=new Texture(path+"Nx.bmp");
-		skyboxPy=new Texture(path+"Py.bmp");
-		skyboxNy=new Texture(path+"Ny.bmp");
-		skyboxPz=new Texture(path+"Pz.bmp");
-		skyboxNz=new Texture(path+"Nz.bmp");
+		skyboxPx=new Texture(path+"pos_x.bmp");
+		skyboxPy=new Texture(path+"pos_y.bmp");
+		skyboxPz=new Texture(path+"pos_z.bmp");
+		
+		skyboxNx=new Texture(path+"neg_x.bmp");
+		skyboxNy=new Texture(path+"neg_y.bmp");
+		skyboxNz=new Texture(path+"neg_z.bmp");
 		
 		if (textureShader==null){
 			textureShader=new Shader(
@@ -106,39 +107,39 @@ public class Skybox {
 			skyboxNy.use(8);
 			GL11.glBegin(GL11.GL_QUADS);
 			
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-5000, -5000, -5000);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-5000, -5000, 5000);
 			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(5000, -5000, 5000);
+			GL11.glVertex3f(-5000, -5000, -5000);
 			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex3f(-5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 0);
+			GL11.glVertex3f(5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 1);
 			GL11.glVertex3f(5000, -5000, -5000);
 			
 			GL11.glEnd();
 			skyboxNx.use(8);
 			GL11.glBegin(GL11.GL_QUADS);
 			
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(-5000, 5000, -5000);
 			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(-5000, 5000, 5000);
+			GL11.glVertex3f(-5000, 5000, -5000);
 			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(-5000, -5000, 5000);
+			GL11.glVertex3f(-5000, 5000, 5000);
 			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex3f(-5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 0);
 			GL11.glVertex3f(-5000, -5000, -5000);
 			
 			GL11.glEnd();
 			skyboxPx.use(8);
 			GL11.glBegin(GL11.GL_QUADS);
 			
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(5000, -5000, -5000);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(5000, -5000, 5000);
-			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(5000, 5000, 5000);
 			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex3f(5000, -5000, -5000);
+			GL11.glTexCoord2f(1, 0);
+			GL11.glVertex3f(5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 1);
+			GL11.glVertex3f(5000, 5000, 5000);
+			GL11.glTexCoord2f(0, 1);
 			GL11.glVertex3f(5000, 5000, -5000);
 			
 			GL11.glEnd();
@@ -158,13 +159,13 @@ public class Skybox {
 			skyboxPz.use(8);
 			GL11.glBegin(GL11.GL_QUADS);
 			
-			GL11.glTexCoord2f(1, 0);
-			GL11.glVertex3f(5000, 5000, 5000);
-			GL11.glTexCoord2f(1, 1);
-			GL11.glVertex3f(5000, -5000, 5000);
 			GL11.glTexCoord2f(0, 1);
-			GL11.glVertex3f(-5000, -5000, 5000);
+			GL11.glVertex3f(5000, 5000, 5000);
 			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex3f(5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 0);
+			GL11.glVertex3f(-5000, -5000, 5000);
+			GL11.glTexCoord2f(1, 1);
 			GL11.glVertex3f(-5000, 5000, 5000);
 			
 			GL11.glEnd();

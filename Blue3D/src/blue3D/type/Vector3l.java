@@ -174,6 +174,19 @@ public class Vector3l implements Sendable, Vector3{
 	
 	
 	/**
+	 * make this vector equal to the given vector
+	 * @param other given vector
+	 * @return 
+	 */
+	public Vector3l set(Vector3f other) {
+		x = (long) other.x;
+		y = (long) other.y;
+		z = (long) other.z;
+		return this;
+	}
+	
+	
+	/**
 	 * set vector to the given value.
 	 * @param x the x value
 	 * @param y the y value
@@ -302,5 +315,44 @@ public class Vector3l implements Sendable, Vector3{
 	public float getFloatZ() {
 		return z;
 	}
+
+	public float distanceSquared(Vector3l other){
+		final float dx=other.x-x,
+				dy=other.y-y,
+				dz=other.z-z;
+		return dx*dx+dy*dy+dz*dz;
+	}
+	
+	
+	public float distance(Vector3l other){
+		double dx=other.x-x,
+				dy=other.y-y,
+				dz=other.z-z;
+		return (float) Math.sqrt(dx*dx+dy*dy+dz*dz);
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

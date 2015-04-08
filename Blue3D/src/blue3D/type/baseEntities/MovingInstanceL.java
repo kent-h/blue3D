@@ -1,6 +1,9 @@
-package blue3D.type;
+package blue3D.type.baseEntities;
 
-public class MovingInstanceD extends BasicInstanceD{
+import blue3D.type.QuaternionF;
+import blue3D.type.Vector3l;
+
+public class MovingInstanceL extends BasicInstanceL{
 	
 	
 	/**
@@ -14,7 +17,7 @@ public class MovingInstanceD extends BasicInstanceD{
 	/**
 	 * the velocity this instance is moving at
 	 */
-	private Vector3d velocity=new Vector3d();
+	private Vector3l velocity=new Vector3l();
 	
 	
 	/**
@@ -30,7 +33,7 @@ public class MovingInstanceD extends BasicInstanceD{
 	 * access to the velocity
 	 * @return pointer to the velocity vector
 	 */
-	public Vector3d velocity(){
+	public Vector3l velocity(){
 		return velocity;
 	}
 	
@@ -38,7 +41,7 @@ public class MovingInstanceD extends BasicInstanceD{
 	/**
 	 * update the position and orientation with the velocity and rotation
 	 */
-	public MovingInstanceD tick(){
+	public MovingInstanceL tick(){
 		QuaternionF.mul(rotation,orientation(),orientation());
 		position().add(velocity);
 		return this;

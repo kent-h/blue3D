@@ -1,4 +1,11 @@
-package blue3D.type;
+package blue3D.type.baseEntities;
+
+import blue3D.type.Matrix4f;
+import blue3D.type.QuaternionF;
+import blue3D.type.Vector3;
+import blue3D.type.Vector3d;
+import blue3D.type.Vector3f;
+import blue3D.type.Vector3l;
 
 
 public interface Instance {

@@ -9,8 +9,8 @@ import blue3D.CameraL;
 import blue3D.MatrixHandler;
 import blue3D.Shader;
 import blue3D.ViewPort;
-import blue3D.type.BasicInstanceL;
 import blue3D.type.QuaternionF;
+import blue3D.type.baseEntities.BasicInstanceL;
 
 public class RotatingDiamond {
 	

@@ -305,13 +305,26 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	/**
 	 * Sets the value of this tuple to the value of tuple t1.
 	 * 
-	 * @param t1
+	 * @param t
 	 *          the tuple to be copied
 	 */
-	public final Vector3f set(Vector3f t1) {
-		this.x = t1.x;
-		this.y = t1.y;
-		this.z = t1.z;
+	public final Vector3f set(Vector3f t) {
+		this.x = t.x;
+		this.y = t.y;
+		this.z = t.z;
+		return this;
+	}
+	
+	/**
+	 * Sets the value of this tuple to the value of tuple t1.
+	 * 
+	 * @param t
+	 *          the tuple to be copied
+	 */
+	public final Vector3f set(Vector3l t) {
+		this.x = t.x;
+		this.y = t.y;
+		this.z = t.z;
 		return this;
 	}
 

@@ -7,10 +7,10 @@ import blue3D.Camera;
 import blue3D.CameraD;
 import blue3D.CameraL;
 import blue3D.MatrixHandler;
-import blue3D.type.Instance;
 import blue3D.type.Vector3d;
 import blue3D.type.Vector3f;
 import blue3D.type.Vector3l;
+import blue3D.type.baseEntities.Instance;
 
 
 /**
