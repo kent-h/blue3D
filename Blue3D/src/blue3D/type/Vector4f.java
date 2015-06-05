@@ -54,5 +54,12 @@ public class Vector4f{
 		y=iy;
 		z=iz;
 	}
+
+	public void set(Vector4f other) {
+		x=other.x;
+		y=other.y;
+		z=other.z;
+		w=other.w;
+	}
 	
 }

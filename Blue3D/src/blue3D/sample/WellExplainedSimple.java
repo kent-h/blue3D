@@ -57,10 +57,14 @@ import static org.lwjgl.system.MemoryUtil.*;
 public class WellExplainedSimple {
 	
 	//We need to strongly reference callback instances.
-  private static GLFWErrorCallback errorCallback;
-  private static GLFWKeyCallback   keyCallback;
-  private static GLFWWindowSizeCallback windowSizeCallBack;
-  private static GLFWFramebufferSizeCallback framebufferSizeCallBack;
+  @SuppressWarnings("unused")
+	private static GLFWErrorCallback errorCallback;
+  @SuppressWarnings("unused")
+	private static GLFWKeyCallback   keyCallback;
+  @SuppressWarnings("unused")
+	private static GLFWWindowSizeCallback windowSizeCallBack;
+  @SuppressWarnings("unused")
+	private static GLFWFramebufferSizeCallback framebufferSizeCallBack;
 
   // The window handle
   private static long window;
@@ -78,12 +82,8 @@ public class WellExplainedSimple {
     glfwDefaultWindowHints(); // optional, the current window hints are already the default
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
-    glfwWindowHint(GLFW_DEPTH_BITS, 24);
     
-    //glGetFramebufferAttachmentParameteriv();
-    
-//    glfwGetWindowAttrib(window, GLFW_DEPTH_BITS);
-    
+    //TODO: enable correct resizing.
 //    glfwSetWindowSizeCallback(window, windowSizeCallBack=new GLFWWindowSizeCallback(){
 //			@Override
 //			public void invoke(long window, int width, int height) {
