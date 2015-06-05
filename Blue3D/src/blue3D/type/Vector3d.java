@@ -28,6 +28,13 @@ public class Vector3d implements Sendable, Vector3{
 	}
 	
 	
+	public Vector3d(Vector3f toCopy) {
+		x=toCopy.x;
+		y=toCopy.y;
+		z=toCopy.z;
+	}
+
+
 	public void reset(){
 		x=y=z=0;
 	}
@@ -107,11 +114,6 @@ public class Vector3d implements Sendable, Vector3{
 		dest.y = desty;
 		dest.x = destx;
 		return dest;
-	}
-	
-	
-	public String toString(){
-		return "("+x+", "+y+", "+z+") @ "+super.toString();
 	}
 
 
@@ -228,6 +230,44 @@ public class Vector3d implements Sendable, Vector3{
 
 	public float getFloatZ() {
 		return (float) z;
+	}
+
+	/**
+	 * Sets this vector to be the vector cross product of vectors v1 and v2.
+	 * 
+	 * @param v1
+	 *          the first vector
+	 * @param v2
+	 *          the second vector
+	 */
+	public final Vector3d cross(Vector3d v1, Vector3d v2) {
+		double x = v1.y * v2.z - v1.z * v2.y,
+					y = v2.x * v1.z - v2.z * v1.x;
+		this.z = v1.x * v2.y - v1.y * v2.x;
+		this.y = y;
+		this.x = x;
+		return this;
+	}
+
+	/**
+	 * Computes the dot product of this vector and vector v1.
+	 * 
+	 * @param v1
+	 *          the other vector
+	 * @return the dot product of this vector and v1
+	 */
+	public final double dot(Vector3f v1) {
+		return x * v1.x + y * v1.y + z * v1.z;
+	}
+	
+	/**
+	 * Returns a string that contains the values of this Vector3f. The form is
+	 * (x,y,z).
+	 * 
+	 * @return the String representation
+	 */
+	public String toString() {
+		return "(" + this.x + ", " + this.y + ", " + this.z + ")";
 	}
 	
 }

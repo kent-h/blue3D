@@ -14,22 +14,22 @@ public class Shader {
 	 * default shader, works with the loaded matrix and colour only.
 	 */
 	public Shader(){
-		String vertex="#version 330 core\n" +
+		String vertex="#version 400\n" +
 				"#extension GL_ARB_explicit_uniform_location : require\n" +
-				"layout(location=8) uniform mat4 worldMatrix;" +
-				"in vec4 gl_Vertex;" +
-				"in vec4 gl_Color;" +
-				"out vec4 outcol;" +
-				"void main() {" +
-				"  gl_Position = worldMatrix * gl_Vertex;" +
-				"  outcol=gl_Color;" +
-				"}";
-		String fragment="#version 330 core\n" +
-				"in vec4 outcol;" +
-				"out vec4 gl_FragColor;" +
-				"void main() {" +
-				"gl_FragColor = outcol;\n" +
-				"}";
+				"layout(location=0) in vec4 glVertex;\n" +
+				"layout(location=0) uniform vec4 glColor;\n" +
+				"layout(location=8) uniform mat4 worldMatrix;\n" +
+				"out vec4 outcol;\n" +
+				"void main() {\n" +
+				"  gl_Position = worldMatrix * glVertex;\n" +
+				"  outcol = glColor;\n" +
+				"}\n";
+		String fragment="#version 400\n" +
+				"in vec4 outcol;\n" +
+				"out vec4 fragColor;\n" +
+				"void main() {\n" +
+				"  fragColor =  outcol;\n" +
+				"}\n";
 		shaderId = GL20.glCreateProgram();
 		vShader = createShader(vertex, GL20.GL_VERTEX_SHADER);
 		GL20.glAttachShader(shaderId, vShader);

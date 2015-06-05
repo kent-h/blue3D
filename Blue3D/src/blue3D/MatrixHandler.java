@@ -121,7 +121,7 @@ public class MatrixHandler {
 		Matrix4f.mul(currentCamera.getMatrix(), modelMatrix, worldMatrix);
 		worldMatrix.store(matrix44Buffer);
 		matrix44Buffer.flip();
-		GL20.glUniformMatrix4(8, false, matrix44Buffer);
+		GL20.glUniformMatrix4fv(8, false, matrix44Buffer);
 	}
 	
 }

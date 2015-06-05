@@ -1,13 +1,9 @@
 package blue3D.sample;
 
+import java.awt.DisplayMode;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 import blue3D.CameraL;

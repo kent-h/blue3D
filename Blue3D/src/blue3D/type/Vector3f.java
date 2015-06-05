@@ -234,13 +234,10 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	 * Normalizes this vector in place.
 	 */
 	public final Vector3f normalize() {
-		float norm;
-
-		norm = (float) (1.0 / Math.sqrt(this.x * this.x + this.y * this.y + this.z
-				* this.z));
-		this.x *= norm;
-		this.y *= norm;
-		this.z *= norm;
+		float norm = (float) (1.0 / Math.sqrt(x * x + y * y + z* z));
+		x *= norm;
+		y *= norm;
+		z *= norm;
 		return this;
 	}
 
@@ -484,9 +481,9 @@ public class Vector3f implements Vector3, java.io.Serializable {
 	 * Negates the value of this tuple in place.
 	 */
 	public final Vector3f negate() {
-		this.x = -this.x;
-		this.y = -this.y;
-		this.z = -this.z;
+		x = -x;
+		y = -y;
+		z = -z;
 		return this;
 	}
 
