@@ -68,105 +68,61 @@ public class WellExplainedSimple {
 
   // The window handle
   private static long window;
+  
+  static final int START_WIDTH = 800;
+  static final int START_HEIGHT = 600;
 	
 	private static void init() {
-    // Setup an error callback. The default implementation
-    // will print the error message in System.err.
-    glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err));
+		// Setup an error callback. The default implementation
+		// will print the error message in System.err.
+		glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err));
 
-    // Initialize GLFW. Most GLFW functions will not work before doing this.
-    if ( glfwInit() != GL11.GL_TRUE )
-        throw new IllegalStateException("Unable to initialize GLFW");
+		// Initialize GLFW. Most GLFW functions will not work before doing this.
+		if (glfwInit() != GL11.GL_TRUE)
+			throw new IllegalStateException("Unable to initialize GLFW");
 
-    // Configure our window
-    glfwDefaultWindowHints(); // optional, the current window hints are already the default
-    glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
-    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
-    
-    //TODO: enable correct resizing.
-//    glfwSetWindowSizeCallback(window, windowSizeCallBack=new GLFWWindowSizeCallback(){
-//			@Override
-//			public void invoke(long window, int width, int height) {
-//				glViewport(0,0,width, height);
-//			}
-//    });
-    
-//    glfwSetFramebufferSizeCallback(window, framebufferSizeCallBack=new GLFWFramebufferSizeCallback(){
-//    	@Override
-//  		public void invoke(long window, int width, int height) {
-//  			//?
-//  		}
-//    });
+		// Configure our window
+		glfwDefaultWindowHints(); // optional, the current window hints are already the default
+		glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
+		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
 
-    int WIDTH = 800;
-    int HEIGHT = 600;
+		// Create the window
+		window = glfwCreateWindow(START_WIDTH, START_HEIGHT, "Blue3D", NULL, NULL);
+		if (window == NULL)
+			throw new RuntimeException("Failed to create the GLFW window");
 
-    // Create the window
-    window = glfwCreateWindow(WIDTH, HEIGHT, "Blue3D", NULL, NULL);
-    if ( window == NULL )
-        throw new RuntimeException("Failed to create the GLFW window");
+		// Setup a key callback. It will be called every time a key is pressed, repeated or released.
+		glfwSetKeyCallback(window, keyCallback = new GLFWKeyCallback() {
+			@Override
+			public void invoke(long window, int key, int scancode, int action,
+					int mods) {
+				if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
+					glfwSetWindowShouldClose(window, GL_TRUE); // We will detect this in our rendering loop
+			}
+		});
 
-    // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-    glfwSetKeyCallback(window, keyCallback = new GLFWKeyCallback() {
-        @Override
-        public void invoke(long window, int key, int scancode, int action, int mods) {
-            if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
-                glfwSetWindowShouldClose(window, GL_TRUE); // We will detect this in our rendering loop
-        }
-    });
+		// Get the resolution of the primary monitor
+		ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		// Center our window
+		glfwSetWindowPos(window, 
+				(GLFWvidmode.width(vidmode) - START_WIDTH) / 2,
+				(GLFWvidmode.height(vidmode) - START_HEIGHT) / 2);
 
-    // Get the resolution of the primary monitor
-    ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    // Center our window
-    glfwSetWindowPos(
-        window,
-        (GLFWvidmode.width(vidmode) - WIDTH) / 2,
-        (GLFWvidmode.height(vidmode) - HEIGHT) / 2
-    );
+		// Make the OpenGL context current
+		glfwMakeContextCurrent(window);
+		// Enable v-sync
+		glfwSwapInterval(1);
 
-    // Make the OpenGL context current
-    glfwMakeContextCurrent(window);
-    // Enable v-sync
-    glfwSwapInterval(1);
+		// Make the window visible
+		glfwShowWindow(window);
 
-    // Make the window visible
-    glfwShowWindow(window);
-    
-    GLContext.createFromCurrent();
-    
-    System.out.println(glGetInteger(GL_DEPTH_BITS));
+		GLContext.createFromCurrent();
 	}
 	
 	public static void main(String[] args){
 		
-//		//setup and create the window
-//		try {
-//			//allow the user to resize the window
-//			Display.setResizable(true);
-//			//set the default size of the window
-//			Display.setDisplayMode(new DisplayMode(800,600));
-//			//actually create the window
-//			Display.create();
-//		} catch (LWJGLException e) {
-//			//this is extremely unlikely
-//			//only reachable if LWJGL was unable to create the window
-//			e.printStackTrace();
-//			System.exit(0);
-//		}
-		
+		//create screen, initialize opengl
 		init();
-		
-		
-		GLContext ctx = GLContext.createFromCurrent();
-		ContextCapabilities caps = ctx.getCapabilities();
-		System.out.println(caps.OpenGL40);
-		System.out.println(caps.OpenGL41);
-		System.out.println(caps.OpenGL42);
-		System.out.println(caps.OpenGL43);
-		System.out.println(caps.OpenGL44);
-		
-		
-		
 		
 		//remove the back side of all triangles (only for optimization)
 		GL11.glCullFace(GL11.GL_BACK);
@@ -195,21 +151,23 @@ public class WellExplainedSimple {
 		
 		//create a ViewPort, and and give it the camera
 		//a ViewPort allows a camera's width and height to be easily resized (the actual number of pixels it needs to render to).
-		ViewPort viewPort=new ViewPort(800, 600).connectCamera(camera);;
+		final ViewPort viewPort=new ViewPort(800, 600).connectCamera(camera);
 		
+		//ensure the camera is resized to when the frame buffer/window size is changed.
+    glfwSetFramebufferSizeCallback(window, new GLFWFramebufferSizeCallback(){
+			@Override
+			public void invoke(long window, int width, int height) {
+				GL11.glViewport(0, 0, width, height);
+				viewPort.resize(width, height);
+				
+			}
+    });
 		
 		//default 3d shader only supports location and basic color
 		new Shader().use();
 		
-		
 		//being the main loop, continue until the window is closed
 		while (glfwWindowShouldClose(window) == GL_FALSE){
-			
-//			if (sizeCallback){
-//				
-//				GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-//					viewPort.resize(Display.getWidth(), Display.getHeight());
-//			}
 			
 			//clear the screen color and the depth buffer
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
@@ -233,13 +191,12 @@ public class WellExplainedSimple {
 			myInstance.draw();
 			
 			//flip the buffers, making the drawn image visible
-			//although it is not used here, this also polls the mouse and keyboard
+			
 			glfwSwapBuffers(window); // swap the color buffers
+			
+			//also poll the mouse and keyboard
 			glfwPollEvents();
 			
-			//don't allow more than 60 frames per second
-			//(wait until 1/60th of a second has passed since this method was last called)
-//			sync(60);
 		}
 		
 	}

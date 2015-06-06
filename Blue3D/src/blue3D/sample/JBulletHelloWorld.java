@@ -42,8 +42,8 @@ public class JBulletHelloWorld {
 		// setup the motion state
 		DefaultMotionState groundMotionState = new DefaultMotionState(new Transform(new QuaternionF().calculateMatrix(new Matrix4f()).translate(new Vector3f(0, -1, 0)))); 
 
-		RigidBodyConstructionInfo groundRigidBodyCI = new RigidBodyConstructionInfo(0, groundMotionState, groundShape, new Vector3f(0,0,0)); 
-		RigidBody groundRigidBody = new RigidBody(groundRigidBodyCI); 
+		RigidBodyConstructionInfo groundRigidBodyCI = new RigidBodyConstructionInfo(0, groundMotionState, groundShape, new Vector3f(0,0,0));
+		RigidBody groundRigidBody = new RigidBody(groundRigidBodyCI);
 
 		dynamicsWorld.addRigidBody(groundRigidBody); // add our ground to the dynamic world.. 
 		
@@ -65,10 +65,10 @@ public class JBulletHelloWorld {
 		long startTime=System.nanoTime();
 		
 		for (int i=0 ; i<30*60; i++) { 
-//			Transform trans = new Transform();
-//		  fallRigidBody.getMotionState().getWorldTransform(trans);
+			Transform trans = new Transform();
+		  fallRigidBody.getMotionState().getWorldTransform(trans);
 		  
-//			System.out.println(trans.origin);  
+			System.out.println(trans.origin);  
 //		  System.out.println(trans.origin);
 //		  Display.sync(30);
 		  dynamicsWorld.stepSimulation(1/30f, 20);
