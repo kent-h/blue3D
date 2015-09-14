@@ -45,7 +45,7 @@ public class Vector4f{
 	 * @return the String representation
 	 */
 	public String toString() {
-		return "(" + x + ", " + y + ", " + z + "," + w + ")";
+		return "(" + x + ", " + y + ", " + z + ", " + w + ")";
 	}
 
 	public void set(float ix, float iy, float iz, float iw) {
@@ -60,6 +60,23 @@ public class Vector4f{
 		y=other.y;
 		z=other.z;
 		w=other.w;
+	}
+
+	public Vector4f sub(Vector4f other) {
+		x-=other.x;
+		y-=other.y;
+		z-=other.z;
+		w-=other.w;
+		return this;
+	}
+
+	public Vector4f normalize() {
+		float div=(float) Math.sqrt(x*x+y*y+z*z+w*w);
+		x/=div;
+		y/=div;
+		z/=div;
+		w/=div;
+		return this;
 	}
 	
 }

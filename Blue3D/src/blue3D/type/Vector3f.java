@@ -324,6 +324,14 @@ public class Vector3f implements Vector3, java.io.Serializable {
 		this.z = t.z;
 		return this;
 	}
+	
+
+	public final Vector3f set(Vector4f t) {
+		this.x = t.x;
+		this.y = t.y;
+		this.z = t.z;
+		return this;
+	}
 
 	/**
 	 * Gets the value of this tuple and copies the values into t.
@@ -547,6 +555,14 @@ public class Vector3f implements Vector3, java.io.Serializable {
 		this.x = s * this.x + t1.x;
 		this.y = s * this.y + t1.y;
 		this.z = s * this.z + t1.z;
+		return this;
+	}
+	
+
+	public final Vector3f div(Vector3f divisor) {
+		x/=divisor.x;
+		y/=divisor.y;
+		z/=divisor.z;
 		return this;
 	}
 
@@ -935,200 +951,41 @@ public class Vector3f implements Vector3, java.io.Serializable {
 		return matrix.translate(this);
 	}
 
-}
+	public float get(int i) {
+		switch (i) {
+		case 0:
+			return x;
+		case 1:
+			return y;
+		case 2:
+			return z;
+		default:
+			switch (i % 3) {
+			case 0:
+				return x;
+			case 1:
+				return y;
+			case 2:
+				return z;
+			default:
+				return Float.NaN;
+			}
+		}
+	}
+	
+	public void set(int i, float val){
+		switch (i) {
+		case 0:
+			x=val;
+			break;
+		case 1:
+			y=val;
+			break;
+		case 2:
+			z=val;
+			break;
+		}
+	}
 
-// public class Vector3f extends org.lwjgl.util.vector.Vector3f implements
-// Vector3{
-//
-//
-// public Vector3f(){
-//
-// }
-//
-// public Vector3f(float x, float y, float z) {
-// this.x=x;
-// this.y=y;
-// this.z=z;
-// }
-//
-//
-// public Vector3f(Vector3f other) {
-// x=other.x;
-// y=other.y;
-// z=other.z;
-// }
-//
-//
-// public Vector3f add(Vector3f other){
-// x+=other.x;
-// y+=other.y;
-// z+=other.z;
-// return this;
-// }
-//
-//
-// /**
-// * set this vector to the sum of t0 and t1
-// * @param t0
-// * @param t1
-// * @return this
-// */
-// public Vector3f add(Vector3f t0, Vector3f t1){
-// x=t0.x+t1.x;
-// y=t0.y+t1.y;
-// z=t0.z+t1.z;
-// return this;
-// }
-//
-//
-// public Vector3f sub(Vector3f other){
-// x-=other.x;
-// y-=other.y;
-// z-=other.z;
-// return this;
-// }
-//
-//
-// /**
-// * set this vector to the sum of t0 and t1
-// * @param t0
-// * @param t1
-// * @return this
-// */
-// public Vector3f sub(Vector3f t0, Vector3f t1){
-// x=t0.x-t1.x;
-// y=t0.y-t1.y;
-// z=t0.z-t1.z;
-// return this;
-// }
-//
-//
-// public Vector3f scale(float scale, Vector3f other){
-// x=other.x*scale;
-// y=other.y*scale;
-// z=other.z*scale;
-// return this;
-// }
-//
-//
-// //this = s*t1 + t2
-// public Vector3f scaleAdd(float multiplier, Vector3f scale, Vector3f add){
-// x=scale.x*multiplier+add.x;
-// y=scale.y*multiplier+add.y;
-// z=scale.z*multiplier+add.z;
-// return this;
-// }
-//
-//
-// public Vector3f absolute(){
-// x=Math.abs(x);
-// y=Math.abs(y);
-// z=Math.abs(z);
-// return this;
-// }
-//
-//
-// public Vector3f absolute(Vector3f absoluteOf){
-// x=Math.abs(absoluteOf.x);
-// y=Math.abs(absoluteOf.y);
-// z=Math.abs(absoluteOf.z);
-// return this;
-// }
-//
-//
-// public Vector3f interpolate(Vector3f vec0, Vector3f vec1, float alpha){
-// float invAlpha=1-alpha;
-// x=invAlpha*vec0.x+alpha*vec1.x;
-// y=invAlpha*vec0.y+alpha*vec1.y;
-// z=invAlpha*vec0.z+alpha*vec1.z;
-// return this;
-// }
-//
-//
-// public Vector3f normalize(){
-// float div=(float) Math.sqrt(x*x+y*y+z*z);
-// // if (div==0){
-// // new RuntimeException().printStackTrace();
-// // System.out.println("found!!!!!!!!!!!!!!!!!!!!!!!x"+x+"y"+y+"z"+z);
-// // }else{
-// // System.out.println("not found........................");
-// // }
-// x/=div;
-// y/=div;
-// z/=div;
-// return this;
-// }
-//
-//
-// /**
-// * sets the value of this vector to the normalization of vector other.
-// * THIS IS DIFFERENT THAN normalise()!!!
-// * CHANGE THE NAME OF THIS LATER!!!
-// * @param other
-// * @return
-// */
-// public Vector3f normalize(Vector3f other){
-// float div=(float) Math.sqrt(other.x*other.x+other.y*other.y+other.z*other.z);
-// x=other.x/div;
-// y=other.y/div;
-// z=other.z/div;
-// return this;
-// }
-//
-//
-// public double dot(Vector3d other){
-// return x*other.x+y*other.y+z*other.z;
-// }
-//
-//
-// public Vector3f setLength(double length) {
-// float dist=(float) (StrictMath.sqrt(x*x+y*y+z*z)/length);
-// x=x/dist;
-// y=y/dist;
-// z=z/dist;
-// return this;
-// }
-//
-//
-// /**
-// * set this vector to the cross product of v0 and v1
-// * @param v0
-// * @param v1
-// * @return this
-// */
-// public Vector3f cross(Vector3f v0, Vector3f v1){
-// float tmpx=v0.y*v1.z-v0.z*v1.y;
-// float tmpy=v0.z*v1.x-v0.x*v1.z;
-// z =v0.x*v1.y-v0.y*v1.x;
-// y=tmpy;
-// x=tmpx;
-// // System.out.println(v0.toString()+v1);
-// return this;
-// }
-//
-//
-// public float dot(Vector3f other){
-// return x*other.x+y*other.y+z*other.z;
-// }
-//
-//
-// /**
-// * this is a utility method, it is not recommended to over-use it, as both
-// vectors must both be normalized first (which is a slow operation).
-// * @param other
-// * @return the angle between this and other
-// */
-// public float angle(Vector3f other){
-// return (float) Math.acos(dot(other)/(length()*other.length()));
-// }
-//
-//
-// public Vector3f setNegation(Vector3f toNegate){
-// x=-toNegate.x;
-// y=-toNegate.y;
-// z=-toNegate.z;
-// return this;
-// }
-//
-// }
+}
 
