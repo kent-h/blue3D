@@ -14,7 +14,7 @@ public class Shader {
 	 * default shader, works with the loaded matrix and colour only.
 	 */
 	public Shader(){
-		String vertex="#version 400\n" +
+		String vertex="#version 330\n" +
 				"#extension GL_ARB_explicit_uniform_location : require\n" +
 				"layout(location=0) in vec4 glVertex;\n" +
 				"layout(location=0) uniform vec4 glColor;\n" +
@@ -24,7 +24,7 @@ public class Shader {
 				"  gl_Position = worldMatrix * glVertex;\n" +
 				"  outcol = glColor;\n" +
 				"}\n";
-		String fragment="#version 400\n" +
+		String fragment="#version 330\n" +
 				"in vec4 outcol;\n" +
 				"out vec4 fragColor;\n" +
 				"void main() {\n" +
